@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MU CSE 65-D Portal</title>
+<title>Metropolitan University | CSE 65-D</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
@@ -18,40 +18,67 @@ scroll-behavior:smooth;
 }
 
 body{
-background:linear-gradient(-45deg,#0f172a,#1e293b,#0f172a,#111827);
-background-size:400% 400%;
-animation:gradientMove 12s ease infinite;
-color:white;
+background:#0b0f19;
+color:#e2e8f0;
+overflow-x:hidden;
 }
 
-@keyframes gradientMove{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
+/* FLOATING BLOBS */
+
+.blob{
+position:absolute;
+width:500px;
+height:500px;
+background:radial-gradient(circle,#7c3aed,transparent 70%);
+filter:blur(120px);
+animation:float 12s ease-in-out infinite;
+z-index:-1;
 }
+
+.blob2{
+position:absolute;
+right:0;
+top:300px;
+width:500px;
+height:500px;
+background:radial-gradient(circle,#2563eb,transparent 70%);
+filter:blur(120px);
+animation:float 18s ease-in-out infinite;
+z-index:-1;
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0px);}
+50%{transform:translateY(-40px);}
+}
+
+/* NAVBAR */
 
 nav{
 position:fixed;
-width:100%;
 top:0;
+width:100%;
 display:flex;
 justify-content:center;
 gap:40px;
 padding:20px;
-background:rgba(0,0,0,0.6);
-backdrop-filter:blur(10px);
+background:rgba(15,23,42,0.6);
+backdrop-filter:blur(14px);
 z-index:1000;
 }
 
 nav a{
-color:#cbd5e1;
 text-decoration:none;
+color:#94a3b8;
+font-weight:500;
 transition:0.3s;
 }
 
 nav a:hover{
-color:#38bdf8;
+color:#a855f7;
 }
+
+/* HERO */
 
 .hero{
 height:100vh;
@@ -60,41 +87,93 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
+padding:0 20px;
+opacity:0;
+transform:translateY(40px);
+transition:1s ease;
+}
+
+.hero.show{
+opacity:1;
+transform:translateY(0);
 }
 
 .hero h1{
-font-size:3rem;
-background:linear-gradient(to right,#38bdf8,#a855f7);
+font-size:3.8rem;
+font-weight:800;
+background:linear-gradient(to right,#8b5cf6,#6366f1,#3b82f6);
 -webkit-background-clip:text;
 color:transparent;
+margin-bottom:20px;
 }
+
+.hero p{
+max-width:750px;
+line-height:1.7;
+font-size:1.1rem;
+color:#cbd5e1;
+margin-bottom:30px;
+}
+
+/* BUTTON */
+
+.btn{
+padding:14px 30px;
+border-radius:40px;
+background:linear-gradient(90deg,#7c3aed,#2563eb);
+border:none;
+color:white;
+font-weight:600;
+cursor:pointer;
+transition:0.4s;
+box-shadow:0 0 20px rgba(124,58,237,0.6);
+}
+
+.btn:hover{
+transform:scale(1.05);
+box-shadow:0 0 40px rgba(124,58,237,1);
+}
+
+/* SECTIONS */
 
 section{
 padding:120px 20px;
 max-width:1100px;
 margin:auto;
+opacity:0;
+transform:translateY(40px);
+transition:1s ease;
+}
+
+section.show{
+opacity:1;
+transform:translateY(0);
 }
 
 h2{
+font-size:2.2rem;
 margin-bottom:30px;
+background:linear-gradient(to right,#a855f7,#3b82f6);
+-webkit-background-clip:text;
+color:transparent;
 }
 
 .card{
 background:rgba(255,255,255,0.05);
-padding:25px;
+border:1px solid rgba(255,255,255,0.08);
+padding:30px;
 border-radius:20px;
-backdrop-filter:blur(10px);
-margin-bottom:20px;
+backdrop-filter:blur(20px);
+margin-bottom:30px;
+transition:0.3s;
 }
 
-input{
-width:100%;
-padding:12px;
-margin-bottom:20px;
-border-radius:10px;
-border:none;
-outline:none;
+.card:hover{
+transform:translateY(-8px);
+box-shadow:0 25px 50px rgba(0,0,0,0.5);
 }
+
+/* TABLE */
 
 table{
 width:100%;
@@ -103,17 +182,43 @@ border-collapse:collapse;
 
 th,td{
 padding:12px;
-border-bottom:1px solid rgba(255,255,255,0.1);
+border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
 th{
-color:#38bdf8;
+color:#8b5cf6;
+}
+
+/* SEARCH */
+
+input{
+width:100%;
+padding:12px;
+border-radius:10px;
+border:none;
+margin-bottom:20px;
+background:#111827;
+color:white;
+outline:none;
+}
+
+/* ADMIN PANEL */
+
+#adminPanel{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#111827;
+padding:20px;
+border-radius:20px;
+display:none;
+box-shadow:0 20px 40px rgba(0,0,0,0.6);
 }
 
 footer{
 text-align:center;
-padding:30px;
-color:#94a3b8;
+padding:40px;
+color:#64748b;
 }
 
 </style>
@@ -121,50 +226,71 @@ color:#94a3b8;
 
 <body>
 
+<div class="blob"></div>
+<div class="blob2"></div>
+
 <nav>
 <a href="#home">Home</a>
+<a href="#routine">Routine</a>
+<a href="#announcements">Announcements</a>
+<a href="#assignments">Assignments</a>
 <a href="#students">Students</a>
 </nav>
 
 <div class="hero" id="home">
-<h1>Metropolitan University</h1>
-<p>CSE 65-D | Section D Official Portal</p>
+<h1>CSE 65-D Digital Hub</h1>
+<p>
+A premium academic portal built for clarity, performance, and modern experience.
+Access routines, assignments, notices, and student resources — all in one streamlined environment.
+Designed to reflect innovation, structure, and academic excellence at Metropolitan University.
+</p>
+<button class="btn" onclick="scrollToSection()">Explore Portal</button>
 </div>
 
+<section id="routine">
+<h2>Class Routine</h2>
+<div class="card">
+<p>Monday – Data Structures</p>
+<p>Tuesday – Discrete Mathematics</p>
+<p>Wednesday – Database Systems</p>
+<p>Thursday – Software Engineering</p>
+<p>Sunday – Algorithm Lab</p>
+</div>
+</section>
+
+<section id="announcements">
+<h2>Announcements</h2>
+<div class="card">
+<p>📌 Midterm schedule releasing soon.</p>
+<p>📌 Project groups must be finalized this week.</p>
+</div>
+</section>
+
+<section id="assignments">
+<h2>Assignments</h2>
+<div class="card">
+<p>✔ Data Structures – Submission: 12 March</p>
+<p>✔ Database ER Diagram – Submission: 18 March</p>
+</div>
+</section>
+
 <section id="students">
-<h2>🎓 Student List</h2>
-
+<h2>Student Directory</h2>
 <input type="text" id="search" placeholder="Search student by name or ID...">
-
 <div class="card">
 <table id="studentTable">
 <thead>
-<tr>
-<th>Name</th>
-<th>Student ID</th>
-<th>Section</th>
-</tr>
+<tr><th>Name</th><th>ID</th><th>Section</th></tr>
 </thead>
 <tbody></tbody>
 </table>
 </div>
-
-<h2 style="margin-top:60px;">🔁 RE Students</h2>
-
-<div class="card">
-<table id="reTable">
-<thead>
-<tr>
-<th>Name</th>
-<th>Student ID</th>
-<th>Section</th>
-</tr>
-</thead>
-<tbody></tbody>
-</table>
-</div>
-
 </section>
+
+<div id="adminPanel">
+<p><strong>Admin Mode Active</strong></p>
+<p>You can edit content directly in code.</p>
+</div>
 
 <footer>
 © 2026 Metropolitan University | CSE 65-D
@@ -172,69 +298,62 @@ color:#94a3b8;
 
 <script>
 
-const students = [
+/* Scroll reveal */
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("show");
+}
+});
+});
+
+document.querySelectorAll("section, .hero").forEach(el=>{
+observer.observe(el);
+});
+
+/* Scroll button */
+function scrollToSection(){
+document.getElementById("routine").scrollIntoView({behavior:"smooth"});
+}
+
+/* Students */
+const students=[
 {name:"Anupama Sharma",id:"261-115-151",section:"D"},
 {name:"Nazmul Islam Luckman",id:"261-115-152",section:"D"},
 {name:"Rafia Akther Chowdhury",id:"261-115-153",section:"D"},
-{name:"Iftekhar Ahmed Shahi",id:"261-115-154",section:"D"},
-{name:"Mahbubul Hasan Tasin",id:"261-115-155",section:"D"},
-{name:"Md Yasin",id:"261-115-156",section:"D"},
-{name:"Abrar Al Rafi",id:"261-115-158",section:"D"},
-{name:"Partho Protim Bhattacharjee",id:"261-115-159",section:"D"},
-{name:"Shafi Ahmed",id:"261-115-160",section:"D"},
-{name:"Tania Khan",id:"261-115-162",section:"D"},
-{name:"Sajib Kanta Roy",id:"261-115-163",section:"D"},
-{name:"Syed Ahmed Tuwaha",id:"261-115-164",section:"D"},
-{name:"Mustafa Galib Nehal",id:"261-115-165",section:"D"},
-{name:"Ruva Akther Promi",id:"261-115-167",section:"D"},
-{name:"Fabiha Ahmed Maisha",id:"261-115-168",section:"D"},
-{name:"Tabachhum Chowdhury",id:"261-115-169",section:"D"},
-{name:"Siam Rahman",id:"261-115-170",section:"D"},
-{name:"Arup Purkayastha",id:"261-115-172",section:"D"},
-{name:"Md Rahat Hossen",id:"261-115-173",section:"D"},
-{name:"Sidratul Samiha Ahmed",id:"261-115-174",section:"D"},
-{name:"Muhammad Yamin Uddin",id:"261-115-175",section:"D"},
-{name:"Sheikh Azad Ahmed",id:"261-115-176",section:"D"},
-{name:"Purobi SutraDhar",id:"261-115-177",section:"D"},
-{name:"Erina Yasmin Muna",id:"261-115-178",section:"D"},
-{name:"Shakil Ahmed Sunny",id:"261-115-179",section:"D"},
-{name:"Mst Sanjida Kawsar",id:"261-115-180",section:"D"},
-{name:"Nazrana Nair Jenny",id:"261-115-182",section:"D"}
-];
-
-const reStudents = [
-{name:"Mohaimin Arif Rahat",id:"253-115-052",section:"D (RE)"},
-{name:"Tajwar Ahmed Shafin",id:"253-115-057",section:"D (RE)"},
-{name:"Treshata Islam Tripty",id:"253-115-107",section:"D (RE)"}
+{name:"Iftekhar Ahmed Shahi",id:"261-115-154",section:"D"}
 ];
 
 students.sort((a,b)=>a.id.localeCompare(b.id));
-reStudents.sort((a,b)=>a.id.localeCompare(b.id));
 
-function loadTable(data,tableId){
-const table=document.querySelector(`#${tableId} tbody`);
+function loadTable(data){
+const table=document.querySelector("#studentTable tbody");
 table.innerHTML="";
 data.forEach(s=>{
-table.innerHTML+=`<tr>
-<td>${s.name}</td>
-<td>${s.id}</td>
-<td>${s.section}</td>
-</tr>`;
+table.innerHTML+=`<tr><td>${s.name}</td><td>${s.id}</td><td>${s.section}</td></tr>`;
 });
 }
 
-loadTable(students,"studentTable");
-loadTable(reStudents,"reTable");
+loadTable(students);
 
 document.getElementById("search").addEventListener("keyup",function(){
 const value=this.value.toLowerCase();
 const filtered=students.filter(s=> 
 s.name.toLowerCase().includes(value) || s.id.includes(value)
 );
-loadTable(filtered,"studentTable");
+loadTable(filtered);
+});
+
+/* Secret Admin Access */
+document.addEventListener("keydown",function(e){
+if(e.ctrlKey && e.key==="m"){
+document.getElementById("adminPanel").style.display="block";
+}
 });
 
 </script>
 
+</body>
+</html>
 </body>
 </html>

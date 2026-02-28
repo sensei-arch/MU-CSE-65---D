@@ -166,6 +166,7 @@ border-radius:20px;
 backdrop-filter:blur(20px);
 margin-bottom:30px;
 transition:0.3s;
+overflow-x: auto;
 }
 
 .card:hover{
@@ -178,28 +179,39 @@ box-shadow:0 25px 50px rgba(0,0,0,0.5);
 table{
 width:100%;
 border-collapse:collapse;
+min-width: 600px;
 }
 
 th,td{
 padding:12px;
 border-bottom:1px solid rgba(255,255,255,0.08);
+text-align: left;
 }
 
 th{
 color:#8b5cf6;
+text-transform: uppercase;
+font-size: 0.85rem;
+letter-spacing: 1px;
 }
 
 /* SEARCH */
 
 input{
 width:100%;
-padding:12px;
-border-radius:10px;
-border:none;
-margin-bottom:20px;
+padding:15px;
+border-radius:12px;
+border:1px solid rgba(255,255,255,0.1);
+margin-bottom:25px;
 background:#111827;
 color:white;
 outline:none;
+transition: 0.3s;
+}
+
+input:focus{
+border-color: #7c3aed;
+box-shadow: 0 0 15px rgba(124,58,237,0.3);
 }
 
 /* ADMIN PANEL */
@@ -213,6 +225,7 @@ padding:20px;
 border-radius:20px;
 display:none;
 box-shadow:0 20px 40px rgba(0,0,0,0.6);
+border: 1px solid #7c3aed;
 }
 
 footer{
@@ -250,11 +263,21 @@ Designed to reflect innovation, structure, and academic excellence at Metropolit
 <section id="routine">
 <h2>Class Routine</h2>
 <div class="card">
-<p>Monday – Data Structures</p>
-<p>Tuesday – Discrete Mathematics</p>
-<p>Wednesday – Database Systems</p>
-<p>Thursday – Software Engineering</p>
-<p>Sunday – Algorithm Lab</p>
+<table>
+<thead>
+<tr><th>Day</th><th>Time</th><th>Course</th><th>Room</th><th>Faculty</th></tr>
+</thead>
+<tbody>
+<tr><td>Sunday</td><td>1:40 PM - 2:30 PM</td><td>D&IC</td><td>507</td><td>SSD</td></tr>
+<tr><td>Monday</td><td>10:00 AM - 10:50 AM</td><td>English</td><td>GL-1</td><td>AAM</td></tr>
+<tr><td>Monday</td><td>10:50 AM - 11:40 AM</td><td>DM</td><td>506</td><td>FAR</td></tr>
+<tr><td>Monday</td><td>12:30 PM - 1:20 PM</td><td>Physics</td><td>GL-1</td><td>RD</td></tr>
+<tr><td>Tuesday</td><td>10:50 AM - 11:40 AM</td><td>English</td><td>GL-1</td><td>AAM</td></tr>
+<tr><td>Tuesday</td><td>12:30 PM - 1:20 PM</td><td>D&IC</td><td>404</td><td>SSD</td></tr>
+<tr><td>Thursday</td><td>1:40 PM - 2:30 PM</td><td>DM</td><td>504</td><td>FAR</td></tr>
+<tr><td>Thursday</td><td>2:30 PM - 3:20 PM</td><td>Physics</td><td>GL-2</td><td>RD</td></tr>
+</tbody>
+</table>
 </div>
 </section>
 
@@ -316,41 +339,39 @@ function scrollToSection(){
 document.getElementById("routine").scrollIntoView({behavior:"smooth"});
 }
 
-/* Students */
-const students = [
-  {name:"Anupama Sharma",id:"261-115-151",section:"D"},
-  {name:"Nazmul Islam Luckman",id:"261-115-152",section:"D"},
-  {name:"Rafia Akther Chowdhury",id:"261-115-153",section:"D"},
-  {name:"Iftekhar Ahmed Shahi",id:"261-115-154",section:"D"},
-  {name:"Mahbubul Hasan Tasin",id:"261-115-155",section:"D"},
-  {name:"Md Yasin",id:"261-115-156",section:"D"},
-  {name:"Abrar Al Rafi",id:"261-115-158",section:"D"},
-  {name:"Partho Protim Bhattacharjee",id:"261-115-159",section:"D"},
-  {name:"Shafi Ahmed",id:"261-115-160",section:"D"},
-  {name:"Tania Khan",id:"261-115-162",section:"D"},
-  {name:"Sajib Kanta Roy",id:"261-115-163",section:"D"},
-  {name:"Syed Ahmed Tuwaha",id:"261-115-164",section:"D"},
-  {name:"Mustafa Galib Nehal",id:"261-115-165",section:"D"},
-  {name:"Ruva Akther Promi",id:"261-115-167",section:"D"},
-  {name:"Fabiha Ahmed Maisha",id:"261-115-168",section:"D"},
-  {name:"Tabachhum Chowdhury",id:"261-115-169",section:"D"},
-  {name:"Siam Rahman",id:"261-115-170",section:"D"},
-  {name:"Arup Purkayastha",id:"261-115-172",section:"D"},
-  {name:"Md. Rahat Hossen",id:"261-115-173",section:"D"},
-  {name:"Sidratul Samiha Ahmed",id:"261-115-174",section:"D"},
-  {name:"Muhammad Yamin Uddin",id:"261-115-175",section:"D"},
-  {name:"Sheikh Azad Ahmed",id:"261-115-176",section:"D"},
-  {name:"Purobi SutraDhar",id:"261-115-177",section:"D"},
-  {name:"Erina Yasmin Muna",id:"261-115-178",section:"D"},
-  {name:"Shakil Ahmed Sunny",id:"261-115-179",section:"D"},
-  {name:"Mst Sanjida Kawsar",id:"261-115-180",section:"D"},
-  {name:"Nazrana Nair Jenny",id:"261-115-182",section:"D"},
-  {name:"Mohaimin Arif Rahat",id:"253-115-052",section:"D (RE)"},
-  {name:"Tajwar Ahmed Shafin",id:"253-115-057",section:"D (RE)"},
-  {name:"Treshata Islam Tripty",id:"253-115-107",section:"D (RE)"}
+/* Full Students List */
+const students=[
+{name:"Anupama sharma",id:"261-115-151",section:"D"},
+{name:"Nazmul Islam Luckman",id:"261-115-152",section:"D"},
+{name:"Rafia Akther Chowdhury",id:"261-115-153",section:"D"},
+{name:"Iftekhar Ahmed Shahi",id:"261-115-154",section:"D"},
+{name:"Mahbubul Hasan Tasin",id:"261-115-155",section:"D"},
+{name:"Md Yasin",id:"261-115-156",section:"D"},
+{name:"Abrar Al Rafi",id:"261-115-158",section:"D"},
+{name:"Partho Protim Bhattacharjee",id:"261-115-159",section:"D"},
+{name:"Shafi Ahmed",id:"261-115-160",section:"D"},
+{name:"Tania khan",id:"261-115-162",section:"D"},
+{name:"Sajib Kanta Roy",id:"261-115-163",section:"D"},
+{name:"Syed Ahmed Tuwaha",id:"261-115-164",section:"D"},
+{name:"Mustafa Galib Nehal",id:"261-115-165",section:"D"},
+{name:"Ruva Akther Promi",id:"261-115-167",section:"D"},
+{name:"Fabiha ahmed maisha",id:"261-115-168",section:"D"},
+{name:"Tabachhum Chowdhury",id:"261-115-169",section:"D"},
+{name:"Siam Rahman",id:"261-115-170",section:"D"},
+{name:"Arup Purkayastha",id:"261-115-172",section:"D"},
+{name:"Md.Rahat Hossen",id:"261-115-173",section:"D"},
+{name:"Sidratul Samiha Ahmed",id:"261-115-174",section:"D"},
+{name:"Muhammad Yamin Uddin",id:"261-115-175",section:"D"},
+{name:"Sheikh Azad Ahmed",id:"261-115-176",section:"D"},
+{name:"Purobi SutraDhar",id:"261-115-177",section:"D"},
+{name:"Erina Yasmin Muna",id:"261-115-178",section:"D"},
+{name:"Shakil Ahmed Sunny",id:"261-115-179",section:"D"},
+{name:"Mst Sanjida Kawsar",id:"261-115-180",section:"D"},
+{name:"Nazrana Nair Jenny",id:"261-115-182",section:"D"},
+{name:"Mohaimin Arif Rahat",id:"253-115-052",section:"D (RE)"},
+{name:"Tajwar Ahmed Shafin",id:"253-115-057",section:"D (RE)"},
+{name:"Treshata Islam Tripty",id:"253-115-107",section:"D (RE)"}
 ];
-
-students.sort((a,b)=>a.id.localeCompare(b.id));
 
 function loadTable(data){
 const table=document.querySelector("#studentTable tbody");

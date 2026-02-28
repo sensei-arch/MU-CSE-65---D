@@ -1,132 +1,217 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>CSE 65-D Class Website</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background-color: #f4f6f9;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MU CSE 65-D</title>
 
-        header {
-            background-color: #0d6efd;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-        nav {
-            background: #222;
-            padding: 10px;
-            text-align: center;
-        }
+<style>
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 15px;
-        }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+scroll-behavior:smooth;
+}
 
-        section {
-            padding: 20px;
-        }
+body{
+background:#0f172a;
+color:white;
+}
 
-        .card {
-            background: white;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
-        }
+/* NAVBAR */
 
-        footer {
-            background: #0d6efd;
-            color: white;
-            text-align: center;
-            padding: 10px;
-        }
+nav{
+position:fixed;
+width:100%;
+top:0;
+display:flex;
+justify-content:center;
+gap:40px;
+padding:20px;
+background:rgba(15,23,42,0.8);
+backdrop-filter:blur(15px);
+z-index:1000;
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+nav a{
+color:#cbd5e1;
+text-decoration:none;
+font-weight:500;
+transition:0.3s;
+}
 
-        table, th, td {
-            border: 1px solid #ccc;
-        }
+nav a:hover{
+color:#38bdf8;
+}
 
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
+/* HERO */
 
-        th {
-            background-color: #eee;
-        }
-    </style>
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+}
+
+.hero h1{
+font-size:3.5rem;
+background:linear-gradient(to right,#38bdf8,#a855f7);
+-webkit-background-clip:text;
+color:transparent;
+}
+
+.hero p{
+margin-top:15px;
+color:#94a3b8;
+}
+
+/* SECTIONS */
+
+section{
+padding:100px 20px;
+max-width:1000px;
+margin:auto;
+}
+
+h2{
+margin-bottom:40px;
+font-size:2rem;
+}
+
+/* CARDS */
+
+.card{
+background:rgba(255,255,255,0.05);
+padding:25px;
+border-radius:20px;
+backdrop-filter:blur(10px);
+margin-bottom:20px;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+/* TABLE */
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+padding:15px;
+text-align:left;
+border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+th{
+color:#38bdf8;
+}
+
+/* FOOTER */
+
+footer{
+text-align:center;
+padding:30px;
+color:#64748b;
+}
+
+</style>
 </head>
 
 <body>
 
-<header>
-    <h1>CSE 65-D Class Portal</h1>
-    <p>Official Section Website</p>
-</header>
-
 <nav>
-    <a href="#announcements">Announcements</a>
-    <a href="#students">Students</a>
-    <a href="#resources">Resources</a>
+<a href="#home">Home</a>
+<a href="#announcements">Announcements</a>
+<a href="#routine">Routine</a>
+<a href="#students">Students</a>
 </nav>
 
+<div class="hero" id="home">
+<h1>Metropolitan University</h1>
+<p>CSE 65-D | Section D Official Portal</p>
+</div>
+
 <section id="announcements">
-    <h2>📢 Announcements</h2>
+<h2>📢 Announcements</h2>
 
-    <div class="card">
-        <strong>Assignment 01 Submission</strong>
-        <p>Submit before next Tuesday. Check Google Classroom.</p>
-    </div>
+<div class="card">
+<h3>Assignment 01</h3>
+<p>Submit before next Tuesday.</p>
+</div>
 
-    <div class="card">
-        <strong>Special Meeting</strong>
-        <p>Meeting tonight at 10 PM.</p>
-    </div>
+<div class="card">
+<h3>Special Meeting</h3>
+<p>Meeting tonight at 10 PM.</p>
+</div>
+
+</section>
+
+<section id="routine">
+<h2>📅 Class Routine</h2>
+
+<div class="card">
+<table>
+<tr>
+<th>Day</th>
+<th>Subject</th>
+<th>Time</th>
+</tr>
+
+<tr>
+<td>Sunday</td>
+<td>Mathematics</td>
+<td>10:00 AM - 11:30 AM</td>
+</tr>
+
+<tr>
+<td>Monday</td>
+<td>Programming</td>
+<td>1:00 PM - 2:30 PM</td>
+</tr>
+
+</table>
+</div>
+
 </section>
 
 <section id="students">
-    <h2>👨‍🎓 Student List</h2>
+<h2>🎓 Student List</h2>
 
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Student ID</th>
-        </tr>
-        <tr>
-            <td>Sajib Kanta Roy</td>
-            <td>261-115-163</td>
-        </tr>
-        <tr>
-            <td>Example Name</td>
-            <td>261-115-000</td>
-        </tr>
-    </table>
-</section>
+<div class="card">
+<table>
+<tr>
+<th>Name</th>
+<th>Student ID</th>
+</tr>
 
-<section id="resources">
-    <h2>📂 Resources</h2>
+<tr>
+<td>Sajib Kanta Roy</td>
+<td>261-115-163</td>
+</tr>
 
-    <div class="card">
-        <p>Lecture Slides - Week 1</p>
-    </div>
+<tr>
+<td>Example Name</td>
+<td>261-115-000</td>
+</tr>
 
-    <div class="card">
-        <p>Math Assignment PDF</p>
-    </div>
+</table>
+</div>
+
 </section>
 
 <footer>
-    © 2026 CSE 65-D | Managed by CR
+© 2026 Metropolitan University | CSE 65-D
 </footer>
 
 </body>

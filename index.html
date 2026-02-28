@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MU CSE 65-D</title>
+<title>MU CSE 65-D Portal</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -18,11 +18,17 @@ scroll-behavior:smooth;
 }
 
 body{
-background:#0f172a;
+background:linear-gradient(-45deg,#0f172a,#1e293b,#0f172a,#111827);
+background-size:400% 400%;
+animation:gradientMove 12s ease infinite;
 color:white;
 }
 
-/* NAVBAR */
+@keyframes gradientMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
 
 nav{
 position:fixed;
@@ -32,23 +38,20 @@ display:flex;
 justify-content:center;
 gap:40px;
 padding:20px;
-background:rgba(15,23,42,0.8);
-backdrop-filter:blur(15px);
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(10px);
 z-index:1000;
 }
 
 nav a{
 color:#cbd5e1;
 text-decoration:none;
-font-weight:500;
 transition:0.3s;
 }
 
 nav a:hover{
 color:#38bdf8;
 }
-
-/* HERO */
 
 .hero{
 height:100vh;
@@ -57,35 +60,24 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-padding:20px;
 }
 
 .hero h1{
-font-size:3.5rem;
+font-size:3rem;
 background:linear-gradient(to right,#38bdf8,#a855f7);
 -webkit-background-clip:text;
 color:transparent;
 }
 
-.hero p{
-margin-top:15px;
-color:#94a3b8;
-}
-
-/* SECTIONS */
-
 section{
-padding:100px 20px;
-max-width:1000px;
+padding:120px 20px;
+max-width:1100px;
 margin:auto;
 }
 
 h2{
-margin-bottom:40px;
-font-size:2rem;
+margin-bottom:30px;
 }
-
-/* CARDS */
 
 .card{
 background:rgba(255,255,255,0.05);
@@ -93,14 +85,16 @@ padding:25px;
 border-radius:20px;
 backdrop-filter:blur(10px);
 margin-bottom:20px;
-transition:0.3s;
 }
 
-.card:hover{
-transform:translateY(-8px);
+input{
+width:100%;
+padding:12px;
+margin-bottom:20px;
+border-radius:10px;
+border:none;
+outline:none;
 }
-
-/* TABLE */
 
 table{
 width:100%;
@@ -108,8 +102,7 @@ border-collapse:collapse;
 }
 
 th,td{
-padding:15px;
-text-align:left;
+padding:12px;
 border-bottom:1px solid rgba(255,255,255,0.1);
 }
 
@@ -117,12 +110,10 @@ th{
 color:#38bdf8;
 }
 
-/* FOOTER */
-
 footer{
 text-align:center;
 padding:30px;
-color:#64748b;
+color:#94a3b8;
 }
 
 </style>
@@ -132,8 +123,6 @@ color:#64748b;
 
 <nav>
 <a href="#home">Home</a>
-<a href="#announcements">Announcements</a>
-<a href="#routine">Routine</a>
 <a href="#students">Students</a>
 </nav>
 
@@ -142,69 +131,36 @@ color:#64748b;
 <p>CSE 65-D | Section D Official Portal</p>
 </div>
 
-<section id="announcements">
-<h2>📢 Announcements</h2>
-
-<div class="card">
-<h3>Assignment 01</h3>
-<p>Submit before next Tuesday.</p>
-</div>
-
-<div class="card">
-<h3>Special Meeting</h3>
-<p>Meeting tonight at 10 PM.</p>
-</div>
-
-</section>
-
-<section id="routine">
-<h2>📅 Class Routine</h2>
-
-<div class="card">
-<table>
-<tr>
-<th>Day</th>
-<th>Subject</th>
-<th>Time</th>
-</tr>
-
-<tr>
-<td>Sunday</td>
-<td>Mathematics</td>
-<td>10:00 AM - 11:30 AM</td>
-</tr>
-
-<tr>
-<td>Monday</td>
-<td>Programming</td>
-<td>1:00 PM - 2:30 PM</td>
-</tr>
-
-</table>
-</div>
-
-</section>
-
 <section id="students">
 <h2>🎓 Student List</h2>
 
+<input type="text" id="search" placeholder="Search student by name or ID...">
+
 <div class="card">
-<table>
+<table id="studentTable">
+<thead>
 <tr>
 <th>Name</th>
 <th>Student ID</th>
+<th>Section</th>
 </tr>
+</thead>
+<tbody></tbody>
+</table>
+</div>
 
+<h2 style="margin-top:60px;">🔁 RE Students</h2>
+
+<div class="card">
+<table id="reTable">
+<thead>
 <tr>
-<td>Sajib Kanta Roy</td>
-<td>261-115-163</td>
+<th>Name</th>
+<th>Student ID</th>
+<th>Section</th>
 </tr>
-
-<tr>
-<td>Example Name</td>
-<td>261-115-000</td>
-</tr>
-
+</thead>
+<tbody></tbody>
 </table>
 </div>
 
@@ -213,6 +169,72 @@ color:#64748b;
 <footer>
 © 2026 Metropolitan University | CSE 65-D
 </footer>
+
+<script>
+
+const students = [
+{name:"Anupama Sharma",id:"261-115-151",section:"D"},
+{name:"Nazmul Islam Luckman",id:"261-115-152",section:"D"},
+{name:"Rafia Akther Chowdhury",id:"261-115-153",section:"D"},
+{name:"Iftekhar Ahmed Shahi",id:"261-115-154",section:"D"},
+{name:"Mahbubul Hasan Tasin",id:"261-115-155",section:"D"},
+{name:"Md Yasin",id:"261-115-156",section:"D"},
+{name:"Abrar Al Rafi",id:"261-115-158",section:"D"},
+{name:"Partho Protim Bhattacharjee",id:"261-115-159",section:"D"},
+{name:"Shafi Ahmed",id:"261-115-160",section:"D"},
+{name:"Tania Khan",id:"261-115-162",section:"D"},
+{name:"Sajib Kanta Roy",id:"261-115-163",section:"D"},
+{name:"Syed Ahmed Tuwaha",id:"261-115-164",section:"D"},
+{name:"Mustafa Galib Nehal",id:"261-115-165",section:"D"},
+{name:"Ruva Akther Promi",id:"261-115-167",section:"D"},
+{name:"Fabiha Ahmed Maisha",id:"261-115-168",section:"D"},
+{name:"Tabachhum Chowdhury",id:"261-115-169",section:"D"},
+{name:"Siam Rahman",id:"261-115-170",section:"D"},
+{name:"Arup Purkayastha",id:"261-115-172",section:"D"},
+{name:"Md Rahat Hossen",id:"261-115-173",section:"D"},
+{name:"Sidratul Samiha Ahmed",id:"261-115-174",section:"D"},
+{name:"Muhammad Yamin Uddin",id:"261-115-175",section:"D"},
+{name:"Sheikh Azad Ahmed",id:"261-115-176",section:"D"},
+{name:"Purobi SutraDhar",id:"261-115-177",section:"D"},
+{name:"Erina Yasmin Muna",id:"261-115-178",section:"D"},
+{name:"Shakil Ahmed Sunny",id:"261-115-179",section:"D"},
+{name:"Mst Sanjida Kawsar",id:"261-115-180",section:"D"},
+{name:"Nazrana Nair Jenny",id:"261-115-182",section:"D"}
+];
+
+const reStudents = [
+{name:"Mohaimin Arif Rahat",id:"253-115-052",section:"D (RE)"},
+{name:"Tajwar Ahmed Shafin",id:"253-115-057",section:"D (RE)"},
+{name:"Treshata Islam Tripty",id:"253-115-107",section:"D (RE)"}
+];
+
+students.sort((a,b)=>a.id.localeCompare(b.id));
+reStudents.sort((a,b)=>a.id.localeCompare(b.id));
+
+function loadTable(data,tableId){
+const table=document.querySelector(`#${tableId} tbody`);
+table.innerHTML="";
+data.forEach(s=>{
+table.innerHTML+=`<tr>
+<td>${s.name}</td>
+<td>${s.id}</td>
+<td>${s.section}</td>
+</tr>`;
+});
+}
+
+loadTable(students,"studentTable");
+loadTable(reStudents,"reTable");
+
+document.getElementById("search").addEventListener("keyup",function(){
+const value=this.value.toLowerCase();
+const filtered=students.filter(s=> 
+s.name.toLowerCase().includes(value) || s.id.includes(value)
+);
+loadTable(filtered,"studentTable");
+});
+
+</script>
 
 </body>
 </html>

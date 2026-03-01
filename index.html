@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Metropolitan University | CSE 65 - D</title>
+<title>Metropolitan University | CSE 65-D</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
@@ -22,27 +22,32 @@ color:#e2e8f0;
 overflow-x:hidden;
 }
 
-/* BACKGROUND BLOBS */
+/* FLOATING BLOBS */
 .blob{
 position:absolute;
-width:600px;
-height:600px;
-background:radial-gradient(circle,#7c3aed33,transparent 70%);
-filter:blur(100px);
-top: -10%;
-left: -10%;
+width:500px;
+height:500px;
+background:radial-gradient(circle,#7c3aed,transparent 70%);
+filter:blur(120px);
+animation:float 12s ease-in-out infinite;
 z-index:-1;
 }
 
 .blob2{
 position:absolute;
-width:600px;
-height:600px;
-background:radial-gradient(circle,#2563eb33,transparent 70%);
-filter:blur(100px);
-bottom: 20%;
-right: -10%;
+right:0;
+top:300px;
+width:500px;
+height:500px;
+background:radial-gradient(circle,#2563eb,transparent 70%);
+filter:blur(120px);
+animation:float 18s ease-in-out infinite;
 z-index:-1;
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0px);}
+50%{transform:translateY(-40px);}
 }
 
 /* NAVBAR */
@@ -53,18 +58,16 @@ width:100%;
 display:flex;
 justify-content:center;
 gap:40px;
-padding:25px;
-background:rgba(11,15,25,0.7);
-backdrop-filter:blur(16px);
+padding:20px;
+background:rgba(15,23,42,0.6);
+backdrop-filter:blur(14px);
 z-index:1000;
-border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
 nav a{
 text-decoration:none;
 color:#94a3b8;
 font-weight:500;
-font-size: 0.9rem;
 transition:0.3s;
 }
 
@@ -72,7 +75,7 @@ nav a:hover{
 color:#a855f7;
 }
 
-/* HERO SECTION */
+/* HERO */
 .hero{
 height:100vh;
 display:flex;
@@ -82,8 +85,8 @@ align-items:center;
 text-align:center;
 padding:0 20px;
 opacity:0;
-transform:translateY(30px);
-transition:1.2s cubic-bezier(0.16, 1, 0.3, 1);
+transform:translateY(40px);
+transition:1s ease;
 }
 
 .hero.show{
@@ -92,62 +95,56 @@ transform:translateY(0);
 }
 
 .hero h1{
-font-size:4.5rem;
+font-size:3.8rem;
 font-weight:800;
-background: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%);
+background:linear-gradient(to right,#8b5cf6,#6366f1,#3b82f6);
 -webkit-background-clip:text;
 color:transparent;
-margin-bottom:15px;
-letter-spacing: -1px;
+margin-bottom:20px;
 }
 
 .hero p{
-max-width:650px;
-line-height:1.6;
-font-size:1.15rem;
-color:#94a3b8;
-margin-bottom:40px;
+max-width:750px;
+line-height:1.7;
+font-size:1.1rem;
+color:#cbd5e1;
+margin-bottom:30px;
 }
 
-/* GLASS BUTTON */
+/* BUTTON */
 .btn{
-padding:16px 48px;
-border-radius:50px;
-background: linear-gradient(90deg, #7c3aed, #2563eb);
-border: none;
-color: #ffffff; /* White text for better contrast */
-font-weight: 700;
-font-size: 1.1rem;
-cursor: pointer;
-transition: all 0.4s ease;
-box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3);
+padding:14px 30px;
+border-radius:40px;
+background:linear-gradient(90deg,#7c3aed,#2563eb);
+border:none;
+color:white;
+font-weight:600;
+cursor:pointer;
+transition:0.4s;
+box-shadow:0 0 20px rgba(124,58,237,0.6);
 }
 
 .btn:hover{
-transform: scale(1.05) translateY(-2px);
-box-shadow: 0 15px 40px rgba(124, 58, 237, 0.5);
+transform:scale(1.05);
+box-shadow:0 0 40px rgba(124,58,237,1);
 }
 
-/* GLASS HEADER */
+/* GLASSMORPHISM HEADERS */
 .glass-header {
     display: inline-block;
-    padding: 12px 28px;
-    background: rgba(168, 85, 247, 0.08);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    padding: 10px 25px;
+    background: rgba(168, 85, 247, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(168, 85, 247, 0.3);
     border-radius: 12px;
-    border: 1px solid rgba(168, 85, 247, 0.2);
-    margin-bottom: 35px;
-}
-
-.glass-header h2 {
-    font-size: 1.8rem;
-    font-weight: 700;
     color: #a855f7;
-    margin: 0;
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin-bottom: 30px;
 }
 
-/* SECTION LAYOUT */
+/* SECTIONS */
 section{
 padding:120px 20px;
 max-width:1100px;
@@ -163,64 +160,59 @@ transform:translateY(0);
 }
 
 .card{
-background:rgba(255,255,255,0.02);
-border:1px solid rgba(255,255,255,0.06);
-padding:35px;
-border-radius:24px;
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.08);
+padding:30px;
+border-radius:20px;
 backdrop-filter:blur(20px);
 margin-bottom:30px;
+transition:0.3s;
+overflow-x: auto;
 }
 
-/* TABLE STYLING */
+/* TABLE */
 table{
 width:100%;
 border-collapse:collapse;
+min-width: 500px;
 }
 
 th,td{
-padding:18px;
-border:1px solid rgba(255,255,255,0.06);
+padding:15px;
+border:1px solid rgba(255,255,255,0.1);
 text-align: left;
 }
 
 th{
 color:#8b5cf6;
 text-transform: uppercase;
-font-size: 0.8rem;
-letter-spacing: 2px;
-background: rgba(255,255,255,0.01);
+font-size: 0.85rem;
+letter-spacing: 1px;
 }
 
 .day-cell {
     font-weight: 700;
     color: #a855f7;
     vertical-align: middle;
-    background: rgba(139, 92, 246, 0.03);
 }
 
-/* DIRECTORY SEARCH */
+/* SEARCH */
 input{
 width:100%;
-padding:16px;
-border-radius:14px;
-border:1px solid rgba(255,255,255,0.1);
-margin-bottom:25px;
-background:#0f172a;
+padding:12px;
+border-radius:10px;
+border:none;
+margin-bottom:20px;
+background:#111827;
 color:white;
 outline:none;
-transition: 0.3s;
-}
-
-input:focus {
-    border-color: #a855f7;
-    box-shadow: 0 0 20px rgba(168, 85, 247, 0.15);
 }
 
 footer{
 text-align:center;
-padding:100px 40px;
-color:#475569;
-border-top: 1px solid rgba(255,255,255,0.05);
+padding:60px 40px;
+color:#64748b;
+line-height: 1.6;
 }
 
 .footer-credit {
@@ -244,18 +236,16 @@ border-top: 1px solid rgba(255,255,255,0.05);
 </nav>
 
 <div class="hero" id="home">
-    <h1>CSE 65 - D</h1>
-    <p>
-        The central academic hub for Metropolitan University students. 
-        Streamlining class schedules, assignment tracking, and resource access for a more efficient university experience.
-    </p>
-    <button class="btn" onclick="scrollToSection()">Explore Portal</button>
+<h1>Realm CSE 65-D </h1>
+<p>
+A high-performance academic ecosystem for the students of CSE 65 section - D of Metropolitan University.
+Effortlessly track your semester with centralized schedules, upcoming deadlines and essential section resources all year long
+</p>
+<button class="btn" onclick="scrollToSection()">Explore Portal</button>
 </div>
 
 <section id="routine">
-<div class="glass-header">
-    <h2>Class Routine [Ramadan]</h2>
-</div>
+<div class="glass-header">Class Routine [Ramadan]</div>
 <div class="card">
     <table>
         <thead>
@@ -326,32 +316,26 @@ border-top: 1px solid rgba(255,255,255,0.05);
 </section>
 
 <section id="announcements">
-<div class="glass-header">
-    <h2>Announcements</h2>
-</div>
+<div class="glass-header">Announcements</div>
 <div class="card">
-    <p style="color: #64748b; font-style: italic;">No new announcements at this time.</p>
+<p style="color: #94a3b8; font-style: italic;">No new announcements at this time.</p>
 </div>
 </section>
 
 <section id="assignments">
-<div class="glass-header">
-    <h2>Assignments</h2>
-</div>
+<div class="glass-header">Assignments</div>
 <div class="card">
-    <p>✔ D & IC assignment, submission date - Tuesday</p>
+<p>✔ D & IC assignment, submission date - Tuesday</p>
 </div>
 </section>
 
 <section id="students">
-<div class="glass-header">
-    <h2>Student Directory</h2>
-</div>
-<input type="text" id="search" placeholder="Search by name or ID...">
+<div class="glass-header">Student Directory</div>
+<input type="text" id="search" placeholder="Search student by name or ID...">
 <div class="card">
 <table id="studentTable">
 <thead>
-    <tr><th>Name</th><th>ID</th><th>Section</th></tr>
+<tr><th>Name</th><th>ID</th><th>Section</th></tr>
 </thead>
 <tbody></tbody>
 </table>
@@ -359,8 +343,8 @@ border-top: 1px solid rgba(255,255,255,0.05);
 </section>
 
 <footer>
-    <p>© 2026 Metropolitan University | CSE 65 - D</p>
-    <p>Maintained by <span class="footer-credit">Sajib Kanta Roy (CR SEC - D)</span></p>
+    <p>© 2026 Metropolitan University | CSE 65-D</p>
+    <p>Site created & maintained by <span class="footer-credit">Sajib Kanta Roy (CR SEC - D)</span></p>
 </footer>
 
 <script>
@@ -431,6 +415,5 @@ s.name.toLowerCase().includes(value) || s.id.includes(value)
 loadTable(filtered);
 });
 </script>
-
 </body>
 </html>

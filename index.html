@@ -111,37 +111,47 @@ color:#cbd5e1;
 margin-bottom:30px;
 }
 
-/* BUTTON */
+/* GLASS BUTTON (As per image_f714fe.png) */
 .btn{
-padding:14px 30px;
-border-radius:40px;
-background:linear-gradient(90deg,#7c3aed,#2563eb);
-border:none;
-color:white;
-font-weight:600;
-cursor:pointer;
-transition:0.4s;
-box-shadow:0 0 20px rgba(124,58,237,0.6);
+padding:16px 45px;
+border-radius:50px;
+background: linear-gradient(90deg, #7c3aed, #2563eb);
+border: none;
+color: white;
+font-weight: 700;
+font-size: 1.1rem;
+cursor: pointer;
+transition: 0.4s ease;
+box-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
+position: relative;
+overflow: hidden;
 }
 
 .btn:hover{
-transform:scale(1.05);
-box-shadow:0 0 40px rgba(124,58,237,1);
+transform: scale(1.05);
+box-shadow: 0 0 35px rgba(124, 58, 237, 0.7);
 }
 
-/* GLASSMORPHISM HEADERS */
+/* GLASS HEADER (As per image_f76b3e.png) */
 .glass-header {
     display: inline-block;
-    padding: 10px 25px;
-    background: rgba(168, 85, 247, 0.15);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(168, 85, 247, 0.3);
+    padding: 12px 28px;
+    background: rgba(168, 85, 247, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-radius: 12px;
-    color: #a855f7;
-    font-weight: 700;
+    border: 1px solid rgba(168, 85, 247, 0.2);
+    margin-bottom: 35px;
+}
+
+.glass-header h2 {
     font-size: 1.8rem;
-    margin-bottom: 30px;
+    font-weight: 700;
+    color: #a855f7;
+    margin: 0;
+    background: none;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: initial;
 }
 
 /* SECTIONS */
@@ -160,10 +170,10 @@ transform:translateY(0);
 }
 
 .card{
-background:rgba(255,255,255,0.05);
+background:rgba(255,255,255,0.03);
 border:1px solid rgba(255,255,255,0.08);
 padding:30px;
-border-radius:20px;
+border-radius:24px;
 backdrop-filter:blur(20px);
 margin-bottom:30px;
 transition:0.3s;
@@ -179,7 +189,7 @@ min-width: 500px;
 
 th,td{
 padding:15px;
-border:1px solid rgba(255,255,255,0.1);
+border:1px solid rgba(255,255,255,0.08);
 text-align: left;
 }
 
@@ -194,25 +204,33 @@ letter-spacing: 1px;
     font-weight: 700;
     color: #a855f7;
     vertical-align: middle;
+    background: rgba(139, 92, 246, 0.05);
 }
 
 /* SEARCH */
 input{
 width:100%;
-padding:12px;
-border-radius:10px;
-border:none;
+padding:15px;
+border-radius:15px;
+border:1px solid rgba(255,255,255,0.1);
 margin-bottom:20px;
 background:#111827;
 color:white;
 outline:none;
+transition: 0.3s;
+}
+
+input:focus {
+    border-color: #a855f7;
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.2);
 }
 
 footer{
 text-align:center;
-padding:60px 40px;
+padding:80px 40px;
 color:#64748b;
 line-height: 1.6;
+border-top: 1px solid rgba(255,255,255,0.05);
 }
 
 .footer-credit {
@@ -238,14 +256,16 @@ line-height: 1.6;
 <div class="hero" id="home">
 <h1>CSE 65-D Digital Hub</h1>
 <p>
-A premium academic portal for Metropolitan University students. 
-Stay updated with the latest Ramadan schedules and assignment deadlines.
+A premium academic portal built for clarity and efficiency.
+Access your official Ramadan routine, upcoming assignments, and section directory.
 </p>
 <button class="btn" onclick="scrollToSection()">Explore Portal</button>
 </div>
 
 <section id="routine">
-<div class="glass-header">Class Routine [Ramadan]</div>
+<div class="glass-header">
+    <h2>Class Routine [Ramadan]</h2>
+</div>
 <div class="card">
     <table>
         <thead>
@@ -316,21 +336,27 @@ Stay updated with the latest Ramadan schedules and assignment deadlines.
 </section>
 
 <section id="announcements">
-<div class="glass-header">Announcements</div>
+<div class="glass-header">
+    <h2>Announcements</h2>
+</div>
 <div class="card">
-<p style="color: #94a3b8; font-style: italic;">No new announcements at this time.</p>
+<p style="color: #64748b; font-style: italic;">No new announcements at this time.</p>
 </div>
 </section>
 
 <section id="assignments">
-<div class="glass-header">Assignments</div>
+<div class="glass-header">
+    <h2>Assignments</h2>
+</div>
 <div class="card">
 <p>✔ D & IC assignment, submission date - Tuesday</p>
 </div>
 </section>
 
 <section id="students">
-<div class="glass-header">Student Directory</div>
+<div class="glass-header">
+    <h2>Student Directory</h2>
+</div>
 <input type="text" id="search" placeholder="Search student by name or ID...">
 <div class="card">
 <table id="studentTable">
@@ -348,6 +374,7 @@ Stay updated with the latest Ramadan schedules and assignment deadlines.
 </footer>
 
 <script>
+/* Scroll reveal */
 const observer=new IntersectionObserver(entries=>{
 entries.forEach(entry=>{
 if(entry.isIntersecting){
@@ -360,10 +387,12 @@ document.querySelectorAll("section, .hero").forEach(el=>{
 observer.observe(el);
 });
 
+/* Scroll button */
 function scrollToSection(){
 document.getElementById("routine").scrollIntoView({behavior:"smooth"});
 }
 
+/* Full Students List */
 const students=[
     {name:"Anupama sharma",id:"261-115-151",section:"D"},
     {name:"Nazmul Islam Luckman",id:"261-115-152",section:"D"},
@@ -415,5 +444,6 @@ s.name.toLowerCase().includes(value) || s.id.includes(value)
 loadTable(filtered);
 });
 </script>
+
 </body>
 </html>
